@@ -1,8 +1,24 @@
 import express from 'express';
+import logger from 'morgan';
 
 const app = express();
 const PORT = 8000;
-app.get('/', (req, res) => res.send('I rule!'));
+
+function runMeEverytime(req: express.Request, res: express.Response, next: any) {
+  console.log("I run every time!!");
+  next();
+}
+
+app.use(runMeEverytime);
+app.use(logger("dev"));
+app.use(express.json());
+
+app.get('/', (req, res) => res.json({ messsage: 'I rule!'}));
+
+app.post('/', (req, res) => {
+  res.send(req.body);
+});
+
 app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at https://localhost:${PORT}`);
+  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
 });

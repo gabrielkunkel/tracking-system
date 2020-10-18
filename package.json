@@ -13,7 +13,7 @@
     "url": "git+https://github.com/gabrielkunkel/tracking-system.git"
   },
   "keywords": [
-    "perosonal",
+    "personal",
     "learning"
   ],
   "author": "Gabriel Kunkel",
@@ -24,10 +24,16 @@
   "homepage": "https://github.com/gabrielkunkel/tracking-system#readme",
   "dependencies": {
     "@types/express": "^4.17.8",
+    "@types/morgan": "^1.9.1",
     "@types/node": "^14.11.2",
     "express": "4.17.1",
+    "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "ts-node": "^9.0.0",
     "typescript": "^4.0.3"
+  },
+  "devDependencies": {
+    "@types/pg": "^7.14.5",
+    "pg": "^8.4.1"
   }
 }
