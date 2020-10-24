@@ -6,4 +6,5 @@ Node.js with Express, PostgreSQL
 [ ] Async/Await for TypeScript
 [ ] Connection Pooling PostgreSQL
 [ ] Using mocked data created with [Mockaroo.com](https://www.mockaroo.com). I created multiple datasets using foreign keys.
+[ ] Use environmental variable using dotenv.
 [ ] 

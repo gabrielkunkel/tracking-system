@@ -1,10 +1,13 @@
 import { Pool, QueryResult } from "pg";
 
-const pool = new Pool()
+const pool = new Pool();
 
-module.exports = {
-  query: (text: string, params: any, callback: (err: Error, result: QueryResult<any>) => void) => {
-    return pool.query(text, params, callback)
-  },
-  
+interface NerveCenter {
+  query: (text: string, params: any) => Promise<QueryResult<any>>
+};
+
+const pgNerveCenter: NerveCenter = {
+  query: (text: string, params: any): Promise<QueryResult<any>> => pool.query(text, params)
 }
+
+export default pgNerveCenter;
