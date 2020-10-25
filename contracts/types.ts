@@ -1,7 +1,7 @@
 import { QueryResult } from "pg";
 
 interface DbNerveCenter {
-    query: (text: string, params: unknown) => Promise<QueryResult<any>>
+    query: (text: string, params: string[]) => Promise<QueryResult<any>>
 }
 
 export { DbNerveCenter };
