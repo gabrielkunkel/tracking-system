@@ -1,13 +1,14 @@
 import { Pool, QueryResult } from "pg";
+import { DbNerveCenter } from "../contracts/types";
+import { injectable } from "inversify";
 
-const pool = new Pool();
+@injectable()
+export class pgNerveCenter implements DbNerveCenter {
+  
+  private readonly _pool: Pool = new Pool();
 
-interface NerveCenter {
-  query: (text: string, params: any) => Promise<QueryResult<any>>
+  public query(text: string, params: any): Promise<QueryResult<any>> {
+    return this._pool.query(text, params);
+  }
+
 }
-
-const pgNerveCenter: NerveCenter = {
-  query: (text: string, params: any): Promise<QueryResult<any>> => pool.query(text, params)
-}
-
-export default pgNerveCenter;
