@@ -3,7 +3,7 @@ import { DbNerveCenter } from "../contracts/types";
 import { injectable } from "inversify";
 
 @injectable()
-export class pgNerveCenter implements DbNerveCenter {
+export default class pgNerveCenter implements DbNerveCenter {
   
   private readonly _pool: Pool = new Pool();
 
