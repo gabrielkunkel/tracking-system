@@ -7,7 +7,7 @@ export default class pgNerveCenter implements DbNerveCenter {
   
   private readonly _pool: Pool = new Pool();
 
-  public query(text: string, params: string[]): Promise<QueryResult<QueryResultRow>> {
+  public query(text: string, params: string[]): Promise<QueryResult<QueryResultRow[]>> {
     return this._pool.query(text, params);
   }
 
