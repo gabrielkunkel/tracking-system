@@ -1,19 +1,11 @@
-import express from 'express';
-import logger from 'morgan';
+import Server from "./server";
 import * as dotenv from 'dotenv';
-import routes from "./routes";
+import IssueController from "./api/IssueController";
 
 dotenv.config();
 
-const app = express();
+const server = new Server([
+    new IssueController("/issues")
+]);
 
-routes(app);
-
-const PORT = process.env.PORT || 4000;
-
-app.use(logger("dev"));
-app.use(express.json());
-
-app.listen(PORT, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${PORT}`);
-});
+server.listen();

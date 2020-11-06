@@ -1,5 +1,5 @@
 import { Pool, QueryResult, QueryResultRow } from "pg";
-import { DbNerveCenter } from "../contracts/types";
+import { DbNerveCenter } from "../contracts/database";
 import { injectable } from "inversify";
 
 @injectable()
