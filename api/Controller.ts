@@ -6,16 +6,17 @@ export default class Controller {
 
     protected _db: db;
     public path: string;
-    public router = Router();
+    public router: Router;
 
     constructor(path: string) {
         this.path = path;
+        this.router = Router();
         this._db = DIContainer.resolve(db);
         this.initializeRoutes();
     }
 
     public initializeRoutes(): void {
-        this.router.get(this.path + '/:id', this.getRecordById);
+        this.router.get('/:id', this.getRecordById);
     }
 
     getRecordById = async (req: Request, res: Response): Promise<boolean>  => {

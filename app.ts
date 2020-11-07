@@ -1,34 +1,36 @@
 import express from 'express';
 import logger from 'morgan';
 import Controller from './api/Controller';
-import { process } from './contracts/env';
 
-export default class Server {
-    public server: express.Application;
+
+export default class App {
+    public app: express.Application;
     public port: number;
 
-    constructor(controllers: Controller[], port?: number) {
-        this.server = express();
+    constructor(controllers: Controller[], port: number) {
+        this.app = express();
 
-        this.port = port || process.env.PORT || 4000;
+        this.port = port || 4000;
 
         this.initializeMiddleware();
         this.initializeControllers(controllers);
     }
 
     private initializeMiddleware(): void {
-        this.server.use(logger("dev"));
-        this.server.use(express.json());
+        console.log("Starting Middleware...");
+        this.app.use(logger("dev"));
+        this.app.use(express.json());
     }
 
     private initializeControllers(controllers: Controller[]): void {
+        console.log("Starting Controllers...");
         controllers.forEach(controller => {
-            this.server.use(controller.path, controller.router);
+            this.app.use(controller.path, controller.router);
         });
     }
 
     public listen(): void {
-        this.server.listen(this.port, () => {
+        this.app.listen(this.port, () => {
             console.log(`⚡️[server]: Server is running at http://localhost:${this.port}`);
         });
     }

@@ -1,6 +1,7 @@
 import { Pool, QueryResult, QueryResultRow } from "pg";
 import { DbNerveCenter } from "../contracts/database";
 import { injectable } from "inversify";
+import "reflect-metadata";
 
 @injectable()
 export default class pgNerveCenter implements DbNerveCenter {
