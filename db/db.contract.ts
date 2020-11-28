@@ -1,6 +1,10 @@
 import { Guid } from 'guid-typescript';
 import { QueryResult, QueryResultRow } from 'pg';
 
+export interface IDatabase {
+    query: (text: string, params: string[]) => Promise<QueryResult<QueryResultRow[]>>;
+}
+
 enum Status {
     backlog = 'Backlog', 
     toDo = 'ToDo', 
@@ -30,8 +34,4 @@ export interface Issue {
     open: boolean,
     status_text: Status,
     priority: Priority,
-}
-
-export interface DbNerveCenter {
-    query: (text: string, params: string[]) => Promise<QueryResult<QueryResultRow[]>>
 }

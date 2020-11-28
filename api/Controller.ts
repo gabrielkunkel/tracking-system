@@ -1,21 +1,20 @@
 import { Request, Response, Router } from "express";
-import db from "../db";
-import DIContainer from "../inversify.config";
+import { IDatabase } from "../db/db.contract";
 
 export default class Controller {
 
-    protected _db: db;
+    protected _db: IDatabase;
     public path: string;
     public router: Router;
 
-    constructor(path: string) {
+    constructor(path: string, database: IDatabase) {
         this.path = path;
         this.router = Router();
-        this._db = DIContainer.resolve(db);
+        this._db = database;
         this.initializeRoutes();
     }
 
-    public initializeRoutes(): void {
+    private initializeRoutes(): void {
         this.router.get('/:id', this.getRecordById);
     }
 
